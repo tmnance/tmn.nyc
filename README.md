@@ -53,3 +53,8 @@ cp .env.example .env; subl .env
 ```sh
 gulp migrate
 ```
+
+* Setup .env file
+```sh
+cp .env.example .env
+```
