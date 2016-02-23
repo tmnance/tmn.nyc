@@ -77,6 +77,7 @@ exports.watch = ->
 	gulp.watch [
 		"#{sourceDir}/!(test)/**/*.coffee"
 		"#{sourceDir}/!(test)/**/*.html"
+		"!#{sourceDir}/_*/**/*.*"
 		# "#{sourceDir}/images/svg/**/*.svg"
 	]
 	.on 'change', (file) ->

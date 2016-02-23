@@ -1,7 +1,7 @@
 (function() {
   var app;
 
-  app = angular.module('main', ['ngRoute', 'main-templates', 'polls']);
+  app = angular.module('main', ['ngRoute', 'main-templates']);
 
   app.config(["$routeProvider", function($routeProvider) {
     $routeProvider.when('/', {

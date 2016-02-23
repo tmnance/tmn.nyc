@@ -7,10 +7,10 @@
 <link rel="stylesheet" href="/css/common/libs.css">
 <link rel="stylesheet" href="/css/master.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="/js/pollConfig.js"></script>
+<!-- <script type="text/javascript" src="/js/pollConfig.js"></script> -->
 <script type="text/javascript" src="/js/common/libs.js"></script>
 <script type="text/javascript" src="/js/angular/main.js"></script>
-<script type="text/javascript" src="/js/angular/polls.js"></script>
+<!-- <script type="text/javascript" src="/js/angular/polls.js"></script> -->
 
 </head>
     <body>
