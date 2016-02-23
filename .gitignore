@@ -1,14 +1,6 @@
-vendor/
-node_modules/
-
-# Laravel 4 specific
-bootstrap/compiled.php
-app/storage/
-
-# Laravel 5 & Lumen specific
-bootstrap/cache/
-storage/
-.env.*.php
-.env.php
+.sass-cache
+node_modules
+.DS_Store
+vendor
+bower_components
 .env
-.env.example
