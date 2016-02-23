@@ -1,3 +1,12 @@
 angular.module('main').controller 'ContactCtrl', ($scope) ->
-    $scope.message = 'Contact us! JK. This is just a demo.'
+    @links = [
+        {
+            'name': 'Github'
+            'url': 'https://github.com/tmnance'
+        },
+        {
+            'name': 'LinkedIn'
+            'url': 'https://www.linkedin.com/in/tmnance'
+        }
+    ]
     return

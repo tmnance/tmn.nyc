@@ -1,6 +1,12 @@
 <!-- contact.html -->
 <div class="jumbotron text-center">
-    <h1>Contact Page</h1>
+    <h1>Contact</h1>
 
-    <p>{{ message }}</p>
+    <!-- <h2>Links</h2> -->
+
+    <div
+        class="contact-list-item"
+        ng-repeat="link in contactCtrl.links track by link.url">
+        {{ link.name }} &mdash; <a href="{{ link.url }}" target="_blank">{{ link.url }}</a>
+    </div>
 </div>
