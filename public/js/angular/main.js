@@ -3,7 +3,7 @@
 
   app = angular.module('main', ['ngRoute', 'main-templates']);
 
-  app.config(["$routeProvider", function($routeProvider) {
+  app.config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider) {
     $routeProvider.when('/', {
       templateUrl: 'main/home.html',
       controller: 'MainCtrl',
@@ -19,6 +19,7 @@
     }).otherwise({
       redirectTo: '/'
     });
+    $locationProvider.html5Mode(true);
   }]);
 
 }).call(this);

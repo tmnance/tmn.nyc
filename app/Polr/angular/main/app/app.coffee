@@ -1,7 +1,7 @@
 app = angular.module 'main', ['ngRoute', 'main-templates'] #, 'polls']
 
 # configure our routes
-app.config ($routeProvider) ->
+app.config ($routeProvider, $locationProvider) ->
     $routeProvider
         # route for the home page
         .when('/', {
@@ -25,4 +25,7 @@ app.config ($routeProvider) ->
         .otherwise({
             redirectTo: '/'
         })
+
+    # use the HTML5 History API
+    $locationProvider.html5Mode(true)
     return

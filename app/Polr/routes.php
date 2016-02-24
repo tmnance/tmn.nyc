@@ -10,8 +10,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-
-Route::group(['prefix' => 'api/v1'], function() {
+Route::group(['prefix' => 'api/v1'], function () {
     // since we will be using this just for CRUD, we won't need create and edit
     // Angular will handle both of those forms
     // this ensures that a user can't access api/create or api/edit when there's nothing there
@@ -24,54 +23,8 @@ Route::group(['prefix' => 'api/v1'], function() {
     );*/
 });
 
-
-// Route::resource('/api/v1/tasks', API_V1_CONTROLLER_BASE . 'TasksController');
-
-// App::missing(function($exception) {
-//     return View::make('index');
-// });
-
-
-// // control panel api route setup
-// Route::group(
-//     [
-//         'prefix' => 'api/{version}',
-//     ],
-//     function($router) {
-//         // api urls in {version}/{controller} format
-//         $api_urls = [
-//             'v2/line-items',
-//             'v2/line-item-types',
-//         ];
-
-//         foreach ($api_urls as $api_url) {
-//             list($version, $controller) = explode('/', $api_url);
-//             // convert version and controller into controller class name
-//             $controller_class = '\App\Polr\Controllers\ApiV2\\' . strtoupper($version) . '\\' .
-//                 // convert line-item-types into LineItemTypes
-//                 str_replace(
-//                     ' ',
-//                     '',
-//                     ucwords(
-//                         str_replace('-', ' ', $controller)
-//                     )
-//                 ) .
-//                 'Controller';
-//             Route::resource(
-//                 $controller,
-//                 $controller_class
-//             );
-//         }
-//     }
-// );
-
-
-/*
-Route::get('/api/v2/line-item-types', function () {
-    App\Model\LineItemType
-    $results = DB::select('select * from ad_line_item_type where deleted_at IS NULL');
-
-    echo json_encode($results);
-    die;
-});
-*/
+// all routes that are not home or api will be redirected to the frontend
+// this allows angular to route them
+Route::any('{catchall}', function ($page) {
+    return view('index');
+})->where('catchall', '(.*)');
