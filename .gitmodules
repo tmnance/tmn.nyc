@@ -1,3 +1,0 @@
-[submodule "public/demo/crossword-generator"]
-	path = public/demo/crossword-generator
-	url = git@github.com:tmnance/crossword-generator.git
