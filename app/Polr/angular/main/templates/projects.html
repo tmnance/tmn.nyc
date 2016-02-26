@@ -1,0 +1,15 @@
+<div class="jumbotron text-center">
+    <h1>Projects</h1>
+
+    <div
+        class="contact-list-item"
+        ng-repeat="project in projectsCtrl.projects track by project.url">
+        <h2>{{ project.name }}</h2>
+        <div>
+            Github &mdash; <a href="{{ project.github_url }}" target="_blank">{{ project.github_url }}</a>
+        </div>
+        <div>
+            Demo &mdash; <a href="{{ project.demo_url }}" target="_blank">Click here to see a demo</a>
+        </div>
+    </div>
+</div>

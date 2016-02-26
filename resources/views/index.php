@@ -20,6 +20,7 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                    <li><a href="/projects"><i class="fa fa-projects"></i> Projects</a></li>
                     <li><a href="/contact"><i class="fa fa-comment"></i> Contact</a></li>
                 </ul>
             </div>
