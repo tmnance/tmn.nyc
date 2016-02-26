@@ -6,7 +6,8 @@
     "type": "project",
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "5.2.*"
+        "laravel/framework": "5.2.*",
+        "tmnance/crossword-generator": "dev-master"
     },
     "require-dev": {
         "symfony/dom-crawler": "~3.0",
@@ -49,5 +50,24 @@
     },
     "config": {
         "preferred-install": "dist"
-    }
+    },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "tmnance/crossword-generator",
+                "version": "dev-master",
+                "source": {
+                    "url": "git://github.com/tmnance/crossword-generator.git",
+                    "type": "git",
+                    "reference": "master"
+                },
+                "autoload": {
+                    "psr-0" : {
+                        "CrosswordPuzzle" : "library"
+                    }
+                }
+            }
+        }
+    ]
 }
