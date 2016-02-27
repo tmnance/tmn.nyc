@@ -1,4 +1,4 @@
-app = angular.module 'main', ['ngRoute', 'main-templates'] #, 'polls']
+app = angular.module 'main', ['ngRoute', 'main-templates', 'analytics'] #, 'polls']
 
 # configure our routes
 app.config ($routeProvider, $locationProvider) ->

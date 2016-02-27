@@ -1,7 +1,28 @@
 (function() {
   var app;
 
-  app = angular.module('main', ['ngRoute', 'main-templates']);
+  app = angular.module('analytics', ['ng']);
+
+  app.run([
+    '$rootScope', '$location', '$window', function($rootScope, $location, $window) {
+      console.log('barnrun!');
+      $rootScope.$on('$viewContentLoaded', function(e) {
+        if (!$window.ga) {
+          return;
+        }
+        $window.ga('send', 'pageview', {
+          page: $location.path()
+        });
+      });
+    }
+  ]);
+
+}).call(this);
+
+(function() {
+  var app;
+
+  app = angular.module('main', ['ngRoute', 'main-templates', 'analytics']);
 
   app.config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider) {
     $routeProvider.when('/', {
@@ -33,6 +54,10 @@
 
 }).call(this);
 
+angular.module("main-templates", []).run(["$templateCache", function($templateCache) {$templateCache.put("main/about.html","<div class=\"jumbotron text-center\"><h1>About</h1><p>Coming soon...</p></div>");
+$templateCache.put("main/contact.html","<div class=\"jumbotron text-center\"><h1>Contact</h1><div class=\"contact-list-item\" ng-repeat=\"link in contactCtrl.links track by link.url\">{{ link.name }} &mdash; <a href=\"{{ link.url }}\" target=\"_blank\">{{ link.url }}</a></div></div>");
+$templateCache.put("main/home.html","<div class=\"jumbotron text-center\"><!-- <h1>Home</h1> --><p>Feel free to take a look around</p><p><img src=\"/images/profile.jpg\" alt=\"Profile\" style=\"width: 250px\"><!-- <img src=\"/images/construction.gif\" alt=\"Under construction\" /> --></p><p>(much) more content coming soon...</p></div>");
+$templateCache.put("main/projects.html","<div class=\"jumbotron text-center\"><h1>Projects</h1><div class=\"contact-list-item\" ng-repeat=\"project in projectsCtrl.projects track by project.url\"><h2>{{ project.name }}</h2><div>Github &mdash; <a href=\"{{ project.github_url }}\" target=\"_blank\">{{ project.github_url }}</a></div><div>Demo &mdash; <a href=\"{{ project.demo_url }}\" target=\"_blank\">Click here to see a demo</a></div></div></div>");}]);
 (function() {
   angular.module('main').controller('ContactCtrl', ["$scope", function($scope) {
     this.links = [
@@ -55,10 +80,6 @@
 
 }).call(this);
 
-angular.module("main-templates", []).run(["$templateCache", function($templateCache) {$templateCache.put("main/about.html","<div class=\"jumbotron text-center\"><h1>About</h1><p>Coming soon...</p></div>");
-$templateCache.put("main/contact.html","<div class=\"jumbotron text-center\"><h1>Contact</h1><div class=\"contact-list-item\" ng-repeat=\"link in contactCtrl.links track by link.url\">{{ link.name }} &mdash; <a href=\"{{ link.url }}\" target=\"_blank\">{{ link.url }}</a></div></div>");
-$templateCache.put("main/home.html","<div class=\"jumbotron text-center\"><!-- <h1>Home</h1> --><p>Feel free to take a look around</p><p><img src=\"/images/profile.jpg\" alt=\"Profile\" style=\"width: 250px\"><!-- <img src=\"/images/construction.gif\" alt=\"Under construction\" /> --></p><p>(much) more content coming soon...</p></div>");
-$templateCache.put("main/projects.html","<div class=\"jumbotron text-center\"><h1>Projects</h1><div class=\"contact-list-item\" ng-repeat=\"project in projectsCtrl.projects track by project.url\"><h2>{{ project.name }}</h2><div>Github &mdash; <a href=\"{{ project.github_url }}\" target=\"_blank\">{{ project.github_url }}</a></div><div>Demo &mdash; <a href=\"{{ project.demo_url }}\" target=\"_blank\">Click here to see a demo</a></div></div></div>");}]);
 (function() {
   angular.module('main').controller('ProjectsCtrl', ["$scope", function($scope) {
     this.projects = [
