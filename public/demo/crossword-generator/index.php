@@ -3,8 +3,8 @@ require_once '../../../vendor/tmnance/crossword-generator/library/autoloader.php
 
 use CrosswordPuzzle\Builder as PuzzleBuilder;
 
-
-$words_raw = (array_key_exists('words', $_POST) ? $_POST['words'] : '');
+$default_word_list = str_replace(' ', "\n", 'tilde narwhal helvetica vegan humblebrag cronut tote axe chambray');
+$words_raw = (array_key_exists('words', $_POST) ? $_POST['words'] : '') ?: $default_word_list;
 ?>
 
 <table cellspacing="0" cellpadding="10" border="0">
@@ -24,10 +24,8 @@ $words_raw = (array_key_exists('words', $_POST) ? $_POST['words'] : '');
 <?php
 echo '<pre>';
 if (!empty($words_raw)) {
-    // process form words
-    $words_raw = $_POST['words'];
     // remove garbage chars
-    $words_raw = str_replace(["\r", ','], ['', "\n"], $words_raw);
+    $words_raw = str_replace(["\r", ' ', ','], ['', "\n", "\n"], $words_raw);
     $words_list = explode("\n", $words_raw);
 
     // cleanup input
