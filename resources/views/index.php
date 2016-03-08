@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <base href="/">
+    <title ng-bind="title">tmn.nyc</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="/css/common/libs.css">
     <link rel="stylesheet" href="/css/master.css">
