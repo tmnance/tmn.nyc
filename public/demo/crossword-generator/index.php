@@ -13,7 +13,7 @@ $words_raw = (array_key_exists('words', $_POST) ? $_POST['words'] : '') ?: $defa
             <h3>Words to process</h3>
             <form action="index.php" method="post">
                 <p>
-                    <textarea name="words" style="width: 250px; height: 250px;"><?php echo $words_raw;?></textarea>
+                    <textarea name="words" style="width: 250px; height: 250px; font-family: monospace;"><?php echo $words_raw;?></textarea>
                 </p>
                 <input type="submit" />
             </form>

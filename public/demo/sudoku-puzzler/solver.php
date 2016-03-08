@@ -13,7 +13,6 @@ if (empty($python_path)) {
 
 $default_puzzle_string = '2..7..5...7...1....493.8..772..961....5..3.743.1.....9..2...76.95....4..18..6.3..';
 $puzzle_string_raw = (array_key_exists('puzzle_string', $_POST) ? $_POST['puzzle_string'] : '') ?: $default_puzzle_string;
-$puzzle_string_raw = trim($puzzle_string_raw);
 ?>
 
 
@@ -24,7 +23,7 @@ $puzzle_string_raw = trim($puzzle_string_raw);
             <h3>Puzzle string to solve</h3>
             <form action="solver.php" method="post">
                 <p>
-                    <textarea name="puzzle_string" style="width: 250px; height: 250px;"><?php echo $puzzle_string_raw;?></textarea>
+                    <textarea name="puzzle_string" style="width: 250px; height: 250px; font-family: monospace;"><?php echo $puzzle_string_raw;?></textarea>
                 </p>
                 <input type="submit" />
             </form>
