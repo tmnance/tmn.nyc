@@ -21,13 +21,13 @@
 (function() {
   var app;
 
-  app = angular.module('main', ['ngRoute', 'main-templates', 'analytics']);
+  app = angular.module('main', ['ngRoute', 'main-templates', 'analytics', 'navigation']);
 
   app.config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider) {
     $routeProvider.when('/', {
       templateUrl: 'main/home.html',
-      controller: 'MainCtrl',
-      controllerAs: 'mainCtrl'
+      controller: 'HomeCtrl',
+      controllerAs: 'homeCtrl'
     }).when('/projects', {
       templateUrl: 'main/projects.html',
       controller: 'ProjectsCtrl',
@@ -45,6 +45,29 @@
     });
     $locationProvider.html5Mode(true);
   }]);
+
+}).call(this);
+
+(function() {
+  var app;
+
+  app = angular.module('navigation', ['ng']);
+
+  app.run([
+    '$rootScope', '$location', '$window', function($rootScope, $location, $window) {
+      $rootScope.$on('$viewContentLoaded', function(e) {
+        var active_path, active_path_parts;
+        active_path = $location.path();
+        active_path_parts = active_path.substr(1).split('/');
+        active_path = '/' + (active_path_parts.length > 0 ? active_path_parts[0] : '');
+        $('header nav li').each(function() {
+          var is_active;
+          is_active = $(this).find('a').attr('href') === active_path;
+          $(this).toggleClass('active', is_active);
+        });
+      });
+    }
+  ]);
 
 }).call(this);
 
@@ -73,9 +96,7 @@ $templateCache.put("main/projects.html","<div class=\"jumbotron text-center\"><h
 }).call(this);
 
 (function() {
-  angular.module('main').controller('MainCtrl', ["$scope", function($scope) {
-    $scope.message = 'Test main content!';
-  }]);
+  angular.module('main').controller('HomeCtrl', ["$scope", function($scope) {}]);
 
 }).call(this);
 

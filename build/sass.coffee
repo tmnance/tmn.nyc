@@ -2,6 +2,7 @@ autoprefixer = require 'gulp-autoprefixer'
 gulp = require 'gulp'
 rename = require 'gulp-rename'
 sass = require 'gulp-sass'
+concat = require 'gulp-concat'
 gutil = require 'gulp-util'
 
 buildHelper = require './helper'
@@ -20,7 +21,8 @@ exports.buildSimple = ->
 			browsers: ['last 2 versions']
 			cascade: false
 		.on 'error', buildHelper.swallowError
-		.pipe rename "master.css"
+		.pipe concat "master.css"
+		# .pipe rename "master.css"
 		.pipe gulp.dest destDir
 	gutil.log "Building " + gutil.colors.magenta("master.css") + " complete"
 	return

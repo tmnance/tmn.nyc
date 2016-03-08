@@ -1,12 +1,12 @@
-app = angular.module 'main', ['ngRoute', 'main-templates', 'analytics'] #, 'polls']
+app = angular.module 'main', ['ngRoute', 'main-templates', 'analytics', 'navigation'] #, 'polls']
 
 # configure our routes
 app.config ($routeProvider, $locationProvider) ->
     $routeProvider
         .when('/', {
             templateUrl : 'main/home.html'
-            controller: 'MainCtrl'
-            controllerAs: 'mainCtrl'
+            controller: 'HomeCtrl'
+            controllerAs: 'homeCtrl'
         })
         .when('/projects', {
             templateUrl : 'main/projects.html'
