@@ -1,3 +1,3 @@
-[submodule "public/demo/sudoku-generator/lib-python"]
-	path = public/demo/sudoku-generator/lib-python
-	url = git@github.com:tmnance/sudoku-generator.git
+[submodule "public/demo/sudoku-puzzler/lib-python"]
+	path = public/demo/sudoku-puzzler/lib-python
+	url = git@github.com:tmnance/sudoku-puzzler.git
