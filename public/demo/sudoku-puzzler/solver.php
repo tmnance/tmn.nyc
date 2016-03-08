@@ -36,22 +36,25 @@ echo '<pre>';
 $start_time = microtime(true);
 
 $puzzle_string = preg_replace('/[^1-9\.]/', '', $puzzle_string_raw);
-
-exec("{$python_path} lib-python/sudoku-solver.py -p {$puzzle_string} --pretty 2>&1", $exec_output, $err);
-
-if (strpos(implode('', $exec_output), '--+--') !== false) {
-    // output has a grid
-    $pretty_grid = $exec_output;
-    $condensed_grid = preg_replace('/[^1-9\.]/', '', implode('', $pretty_grid));
-
-    $elapsed_time = microtime(true) - $start_time;
-
-    echo "elapsed time = {$elapsed_time}\n\n";
-
-    echo implode("\n", $pretty_grid);
-    echo "\n" . $condensed_grid;
+if (strlen($puzzle_string) != 81 || substr_count($puzzle_string, '.') > 64) {
+    echo 'Badly formed puzzle string, must be exactly 81 characters and have no more than 64 unknowns';
 } else {
-    echo implode("\n", $exec_output);
+    exec("{$python_path} lib-python/sudoku-solver.py -p {$puzzle_string} --pretty 2>&1", $exec_output, $err);
+
+    if (strpos(implode('', $exec_output), '--+--') !== false) {
+        // output has a grid
+        $pretty_grid = $exec_output;
+        $condensed_grid = preg_replace('/[^1-9\.]/', '', implode('', $pretty_grid));
+
+        $elapsed_time = microtime(true) - $start_time;
+
+        echo "elapsed time = {$elapsed_time}\n\n";
+
+        echo implode("\n", $pretty_grid);
+        echo "\n" . $condensed_grid;
+    } else {
+        echo implode("\n", $exec_output);
+    }
 }
 echo '</pre>';
 ?>
