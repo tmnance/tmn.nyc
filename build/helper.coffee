@@ -3,8 +3,8 @@ gutil = require 'gulp-util'
 moment = require 'moment'
 path = require 'path'
 
-exports.getModuleNameForFile = (file, sourceDirectory) ->
-	currentPath = path.relative sourceDirectory, file.path
+exports.getModuleNameForFilePath = (filePath, sourceDirectory) ->
+	currentPath = path.relative sourceDirectory, filePath
 	while currentPath
 		parent = path.dirname currentPath
 		grandparent = path.dirname parent

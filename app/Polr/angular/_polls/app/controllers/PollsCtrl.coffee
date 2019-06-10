@@ -40,16 +40,16 @@ angular.module('polls').controller 'PollsCtrl', ($scope, $http, $location) ->
 		@getSinglePoll $state.params.id
 		return
 
- 	# send vote
- 	@submitVote = ->
- 		$http.post('/api/v1/polls', @polls[0].options).success ->
- 			$location.url '/polls/success'
- 			return
- 		return
+	# send vote
+	@submitVote = ->
+		$http.post('/api/v1/polls', @polls[0].options).success ->
+			$location.url '/polls/success'
+			return
+		return
 
- 	#show or hide add choice interface
- 	@toggleAddChoice = =>
- 		@addChoice = !@addChoice
- 		return
+	#show or hide add choice interface
+	@toggleAddChoice = =>
+		@addChoice = !@addChoice
+		return
 
 	return

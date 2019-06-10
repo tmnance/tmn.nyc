@@ -6,12 +6,13 @@ coffee = require 'gulp-coffee'
 rename = require 'gulp-rename'
 sass = require 'gulp-sass'
 # symlink = require 'gulp-symlink'
-uglify = require 'gulp-uglify'
-minifyCss = require 'gulp-minify-css'
+terser = require 'gulp-terser'
+minifyCss = require 'gulp-clean-css'
 # merge = require 'merge-stream'
 # karma = require('karma').server
 argv = require('yargs').argv
-gutil = require 'gulp-util'
+log = require 'fancy-log'
+colors = require 'ansi-colors'
 exec = require('child_process').exec
 
 buildAngular = require './build/angular'
@@ -44,7 +45,7 @@ dest =
 	appJS: 'public/js/app'
 	fonts: 'public/css/fonts'
 
-gulp.task 'libs', ->
+gulp.task 'libs', (done) ->
 	gulp.src libs.css
 		.pipe concat 'libs.css'
 		.pipe gulp.dest dest.commonCss
@@ -55,13 +56,15 @@ gulp.task 'libs', ->
 	gulp.src libs.js
 		.pipe concat 'libs.js'
 		.pipe gulp.dest dest.commonJs
-		.pipe uglify
-			preserveComments: 'some'
+		.pipe terser
+			output:
+				comments: 'some'
 		.on 'error', buildHelper.swallowError
 		.pipe rename 'libs.min.js'
 		.pipe gulp.dest dest.commonJs
 	gulp.src libs.fonts
 		.pipe gulp.dest dest.fonts
+	done()
 	return
 
 # gulp.task 'link', ->
@@ -77,8 +80,10 @@ gulp.task 'libs', ->
 # 		.pipe symlink 'sass/angular/common/neat',
 # 			force: true
 
-gulp.task 'angular:clean', ->
+gulp.task 'angular:clean', (done) ->
 	buildAngular.clean()
+	done()
+	return
 
 # gulp.task 'angular:libs', ->
 # 	buildAngular.buildLibs()
@@ -86,37 +91,40 @@ gulp.task 'angular:clean', ->
 # gulp.task 'angular:worker-libs', ->
 # 	buildAngular.buildWebWorkerLibs()
 
-gulp.task 'watch', ->
+gulp.task 'watch', (done) ->
 	buildAngular.watch()
 	buildSass.watchSimple()
+	done()
 	return
 
-gulp.task 'angular', ->
+gulp.task 'angular', (done) ->
 	release = argv.r
 	buildAngular.buildAllModules(release)
+	done()
 	return
 
-gulp.task 'sass', ->
+gulp.task 'sass', (done) ->
 	# if module = argv.m
 	# 	buildSass.buildModule module
 	# else
 	# 	buildSass.buildModule()
 	buildSass.buildSimple()
+	done()
 	return
 
-gulp.task 'migrate', (cb) ->
+gulp.task 'migrate', (done) ->
 	exec 'php artisan migrate', (err, stdout, stderr) ->
-		gutil.log stdout if stdout
-		gutil.log stderr if stderr
-		cb err
+		log stdout if stdout
+		log stderr if stderr
+		done err
 		return
 	return
 
-gulp.task 'migrate:refresh', (cb) ->
+gulp.task 'migrate:refresh', (done) ->
 	exec 'composer dump-autoload; php artisan migrate:refresh', (err, stdout, stderr) ->
-		gutil.log stdout if stdout
-		gutil.log stderr if stderr
-		cb err
+		log stdout if stdout
+		log stderr if stderr
+		done err
 		return
 	return
 
@@ -128,11 +136,10 @@ gulp.task 'migrate:refresh', (cb) ->
 # 	buildAngular.buildModule undefined, true
 # 	buildSass.buildModule undefined, true
 
-gulp.task 'default', ['help']
-gulp.task 'help', ->
+gulp.task 'help', (done) ->
 	padLength = 25
-	gutil.log '========== Gulpfile Usage =========='
-	gutil.log buildHelper.padRight('Command', padLength) + 'Description'
+	log '========== Gulpfile Usage =========='
+	log buildHelper.padRight('Command', padLength) + 'Description'
 	commands = {
 		'angular': 'Build all angular module js'
 		'angular -r': 'Build all for release'
@@ -148,6 +155,8 @@ gulp.task 'help', ->
 		'watch': 'Watch sass and coffee resources for changes'
 	}
 	for k, v of commands
-		gutil.log gutil.colors.magenta(buildHelper.padRight(k, padLength)) + gutil.colors.cyan(v)
+		log colors.magenta(buildHelper.padRight(k, padLength)) + colors.cyan(v)
+	done()
 	return
 
+gulp.task 'default', gulp.series 'help'
