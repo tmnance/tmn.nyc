@@ -58,7 +58,7 @@
                 "name": "tmnance/crossword-generator",
                 "version": "dev-master",
                 "source": {
-                    "url": "git://github.com/tmnance/crossword-generator.git",
+                    "url": "https://github.com/tmnance/crossword-generator.git",
                     "type": "git",
                     "reference": "master"
                 },
