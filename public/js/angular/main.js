@@ -93,7 +93,7 @@
     function($rootScope,
     $location,
     $window) {
-      // TODO [TN 3/8/16] kinda hacky, may want to fix eventually to be cleaner
+      // set active class on current header nav
       $rootScope.$on('$viewContentLoaded',
     function(e) {
         var active_path,
@@ -116,8 +116,6 @@
 
 (function() {
   angular.module('main').controller('AboutCtrl', ["$scope", function($scope) {}]);
-
-  // $scope.message = 'Look! I am an about page.'
 
 }).call(this);
 
@@ -143,8 +141,6 @@ $templateCache.put("main/projects.html","<div class=\"jumbotron text-center\"><h
 
 (function() {
   angular.module('main').controller('HomeCtrl', ["$scope", function($scope) {}]);
-
-  // $scope.message = 'Test main content!'
 
 }).call(this);
 

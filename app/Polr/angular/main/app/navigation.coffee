@@ -1,7 +1,7 @@
 app = angular.module 'navigation', ['ng']
 
 app.run ['$rootScope', '$location', '$window', ($rootScope, $location, $window) ->
-    # TODO [TN 3/8/16] kinda hacky, may want to fix eventually to be cleaner
+    # set active class on current header nav
     $rootScope.$on '$viewContentLoaded', (e) ->
         active_path = $location.path()
         # /projects to ['projects']
