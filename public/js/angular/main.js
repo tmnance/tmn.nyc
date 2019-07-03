@@ -120,9 +120,9 @@
 }).call(this);
 
 angular.module("main-templates", []).run(["$templateCache", function($templateCache) {$templateCache.put("main/about.html","<div class=\"jumbotron text-center\"><h1>About</h1><p>Coming soon...</p></div>");
-$templateCache.put("main/contact.html","<div class=\"jumbotron text-center\"><h1>Contact</h1><div class=\"contact-list-item\" ng-repeat=\"link in contactCtrl.links track by link.url\">{{ link.name }} &mdash;<a href=\"{{ link.url }}\" target=\"_blank\">{{ link.url }}</a></div></div>");
+$templateCache.put("main/contact.html","<div class=\"jumbotron text-center\"><h1>Contact</h1><div class=\"contact-list-item\" ng-repeat=\"link in contactCtrl.links track by link.url\">{{ link.name + \" &mdash; \" }}<a href=\"{{ link.url }}\" target=\"_blank\">{{ link.url }}</a></div></div>");
 $templateCache.put("main/home.html","<div class=\"jumbotron text-center\"><p>Feel free to take a look around!!</p><p><img src=\"/images/profile.jpg\" alt=\"Profile\" style=\"width: 250px;\"></p></div>");
-$templateCache.put("main/projects.html","<div class=\"jumbotron text-center\"><h1>Projects</h1><div class=\"contact-list-item\" ng-repeat=\"project in projectsCtrl.projects\"><h2>{{ project.name }} ({{project.technologies.join(\', \')}})</h2><div>Github &mdash;<a href=\"{{ project.github_url }}\" target=\"_blank\">{{ project.github_url }}</a></div><div ng-repeat=\"demo in project.demos track by demo.url\">{{ demo.name }} &mdash;<a href=\"{{ demo.url }}\" target=\"_blank\">Click here to see demo</a></div></div></div>");}]);
+$templateCache.put("main/projects.html","<div class=\"jumbotron text-center\"><h1>Projects</h1><div class=\"contact-list-item\" ng-repeat=\"project in projectsCtrl.projects\"><h2>{{ project.name }} ({{project.technologies.join(\', \')}})</h2><div ng-repeat=\"link in project.links track by link.url\">{{ link.name + \" &mdash; \"}}<a href=\"{{ link.url }}\" target=\"_self\">{{ link.link_text || link.url }}</a></div></div></div>");}]);
 (function() {
   angular.module('main').controller('ContactCtrl', ["$scope", function($scope) {
     this.links = [
@@ -148,28 +148,51 @@ $templateCache.put("main/projects.html","<div class=\"jumbotron text-center\"><h
   angular.module('main').controller('ProjectsCtrl', ["$scope", function($scope) {
     this.projects = [
       {
+        'name': 'HabitPanda - Habit Building iOS App',
+        'technologies': ['swift'],
+        'links': [
+          {
+            'name': 'Website',
+            'url': 'https://habitpanda.app'
+          },
+          {
+            'name': 'App Store Link',
+            'url': 'https://itunes.apple.com/app/apple-store/id1466306659'
+          }
+        ]
+      },
+      {
         'name': 'Sudoku Puzzle Solver/Generator',
         'technologies': ['python'],
-        'github_url': 'https://github.com/tmnance/sudoku-puzzler',
-        'demos': [
+        'links': [
+          {
+            'name': 'Github',
+            'url': 'https://github.com/tmnance/sudoku-puzzler'
+          },
           {
             'name': 'Solver Demo',
-            'url': '/demo/sudoku-puzzler/solver.php'
+            'url': '/demo/sudoku-puzzler/solver.php',
+            'link_text': 'Click here to see demo'
           },
           {
             'name': 'Generator Demo',
-            'url': '/demo/sudoku-puzzler/generator.php'
+            'url': '/demo/sudoku-puzzler/generator.php',
+            'link_text': 'Click here to see demo'
           }
         ]
       },
       {
         'name': 'Crossword Puzzle Generator',
         'technologies': ['php'],
-        'github_url': 'https://github.com/tmnance/crossword-generator',
-        'demos': [
+        'links': [
+          {
+            'name': 'Github',
+            'url': 'https://github.com/tmnance/crossword-generator'
+          },
           {
             'name': 'Demo',
-            'url': '/demo/crossword-generator'
+            'url': '/demo/crossword-generator',
+            'link_text': 'Click here to see demo'
           }
         ]
       }

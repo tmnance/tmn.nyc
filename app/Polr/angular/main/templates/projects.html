@@ -5,12 +5,9 @@
         class="contact-list-item"
         ng-repeat="project in projectsCtrl.projects">
         <h2>{{ project.name }} ({{project.technologies.join(', ')}})</h2>
-        <div>
-            Github &mdash; <a href="{{ project.github_url }}" target="_blank">{{ project.github_url }}</a>
-        </div>
         <div
-            ng-repeat="demo in project.demos track by demo.url">
-            {{ demo.name }} &mdash; <a href="{{ demo.url }}" target="_blank">Click here to see demo</a>
+            ng-repeat="link in project.links track by link.url">
+            {{ link.name + " &mdash; "}}<a href="{{ link.url }}" target="_self">{{ link.link_text || link.url }}</a>
         </div>
     </div>
 </div>
