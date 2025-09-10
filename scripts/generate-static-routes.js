@@ -77,23 +77,17 @@ async function generateStaticRoutes() {
       `<title>${route.title} - tmn.nyc</title>`
     );
 
-    // Create directory if it doesn't exist
-    const routeDir = path.join(distPath, route.path);
-    if (route.path !== '/') {
-      fs.mkdirSync(routeDir, { recursive: true });
-    }
-
-    // Write the HTML file
+    // Write the HTML file as flat files (no directories)
     const outputPath = route.path === '/' 
       ? indexPath 
-      : path.join(routeDir, 'index.html');
+      : path.join(distPath, `${route.path.slice(1)}.html`); // Remove leading slash and add .html
     
     fs.writeFileSync(outputPath, routeHtml);
     console.log(`✅ Generated: ${route.path} -> ${outputPath}`);
   });
 
   console.log('\n🎉 Static route generation complete!');
-  console.log('📁 Each route now has its own index.html file for better SEO.');
+  console.log('📄 Each route now has its own .html file for better SEO and consistent URLs.');
 }
 
 generateStaticRoutes().catch(console.error);
