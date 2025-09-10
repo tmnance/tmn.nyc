@@ -13,38 +13,40 @@ const Contact = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">Get In Touch</h1>
-        <p className="text-xl text-gray-600">
+        <h1 className="text-4xl font-bold text-white mb-4 font-sans">
+          Get In <span className="text-neon-cyan neon-text font-mono">Touch</span>
+        </h1>
+        <p className="text-xl text-gray-300 font-light">
           I'm always interested in hearing about new opportunities and interesting projects.
         </p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-8 mb-12">
-        <div className="card">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6">Let's Connect</h2>
-          <p className="text-gray-600 mb-6">
+        <div className="card group">
+          <h2 className="text-2xl font-semibold text-neon-pink mb-6 font-mono group-hover:text-neon-cyan transition-colors duration-300">Let's Connect</h2>
+          <p className="text-gray-300 mb-6 leading-relaxed">
             If you'd like to chat about technology, discuss projects, or just connect, I'd love to hear from you.
           </p>
 
           <div className="space-y-4">
-            <div className="flex items-center">
-              <EnvelopeIcon className="h-5 w-5 text-gray-400 mr-3" />
+            <div className="flex items-center group/contact">
+              <EnvelopeIcon className="h-5 w-5 text-neon-cyan mr-3 group-hover/contact:text-neon-pink transition-colors duration-300" />
               <a
                 href="mailto:tmnance@gmail.com"
-                className="text-gray-600 hover:text-primary-600 transition-colors duration-200"
+                className="text-gray-300 hover:text-neon-cyan transition-colors duration-300 font-mono"
               >
                 tmnance@gmail.com
               </a>
             </div>
-            <div className="flex items-center">
-              <MapPinIcon className="h-5 w-5 text-gray-400 mr-3" />
-              <span className="text-gray-600">New York, NY</span>
+            <div className="flex items-center group/contact">
+              <MapPinIcon className="h-5 w-5 text-neon-cyan mr-3 group-hover/contact:text-neon-pink transition-colors duration-300" />
+              <span className="text-gray-300 font-mono">New York, NY</span>
             </div>
           </div>
         </div>
 
-        <div className="card">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6">Find Me Online</h2>
+        <div className="card group">
+          <h2 className="text-2xl font-semibold text-neon-cyan mb-6 font-mono group-hover:text-neon-pink transition-colors duration-300">Find Me Online</h2>
           <div className="space-y-4">
             {contactLinks.map((link, index) => (
               <a
@@ -52,13 +54,13 @@ const Contact = () => {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between p-3 rounded-lg border border-gray-200 hover:border-primary-300 hover:bg-primary-50 transition-colors duration-200 group"
+                className="flex items-center justify-between p-3 rounded-lg border border-neon-purple/30 hover:border-neon-pink/50 hover:bg-dark-700/50 transition-all duration-300 group/link"
               >
-                <span className="font-medium text-gray-900 group-hover:text-primary-700">
+                <span className="font-medium text-white group-hover/link:text-neon-pink transition-colors duration-300 font-mono">
                   {link.name}
                 </span>
                 <svg
-                  className="h-4 w-4 text-gray-400 group-hover:text-primary-600"
+                  className="h-4 w-4 text-neon-cyan group-hover/link:text-neon-pink group-hover/link:rotate-45 transition-all duration-300"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
