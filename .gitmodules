@@ -1,3 +1,0 @@
-[submodule "public/demo/sudoku-puzzler/lib-python"]
-	path = public/demo/sudoku-puzzler/lib-python
-	url = https://github.com/tmnance/sudoku-puzzler.git
