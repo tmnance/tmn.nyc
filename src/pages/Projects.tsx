@@ -21,7 +21,8 @@ const Projects = () => {
         </p>
       </div>
 
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {/* <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"> */}
+      <div className="grid gap-8 md:grid-cols-2">
         {projects.map((project, index) => (
           <div key={index} className="card group">
             <div className="mb-4">

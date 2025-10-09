@@ -37,22 +37,12 @@ export const projects: Project[] = [
     ],
   },
   {
-    name: 'Sudoku Puzzle Solver/Generator',
-    technologies: ['python'],
+    name: 'iOS On-Device LLM Chat App',
+    technologies: ['swift', 'swiftui', 'ios', 'llm'],
     links: [
       {
         name: 'GitHub',
-        url: 'https://github.com/tmnance/sudoku-puzzler',
-      },
-    ],
-  },
-  {
-    name: 'Crossword Puzzle Generator',
-    technologies: ['php'],
-    links: [
-      {
-        name: 'GitHub',
-        url: 'https://github.com/tmnance/crossword-generator',
+        url: 'https://github.com/tmnance/foundation-on-device-llm-test',
       },
     ],
   },
