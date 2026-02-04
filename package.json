@@ -25,6 +25,9 @@
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.8.2"
   },
+  "overrides": {
+    "glob": "^11.1.0"
+  },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
     "@types/node": "^24.3.1",
