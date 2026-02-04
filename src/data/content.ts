@@ -1,5 +1,6 @@
 export interface Project {
   name: string;
+  description: string;
   technologies: string[];
   links: {
     name: string;
@@ -15,7 +16,21 @@ export interface ContactLink {
 
 export const projects: Project[] = [
   {
+    name: 'Cognia Insightarium',
+    description:
+      'A bookmark / saved post management system for collecting, organizing, and tagging content from X, Reddit, LinkedIn, and other sources. Features multi-platform sync and LLM-powered tagging.',
+    technologies: ['react', 'typescript', 'tailwind', 'node', 'postgresql', 'prisma', 'llm'],
+    links: [
+      {
+        name: 'GitHub',
+        url: 'https://github.com/tmnance/cognia-insightarium',
+      },
+    ],
+  },
+  {
     name: 'HabitPanda - iOS Habit Tracking App',
+    description:
+      'An iOS habit tracking app that helps users build and maintain healthy habits through daily check-ins and streak tracking. Available on the App Store.',
     technologies: ['swift', 'swiftui', 'ios'],
     links: [
       {
@@ -38,6 +53,8 @@ export const projects: Project[] = [
   },
   {
     name: 'iOS On-Device LLM Chat App',
+    description:
+      'An iOS app that leverages Apples\'s Foundation Models framework for on-device language model interactions.',
     technologies: ['swift', 'swiftui', 'ios', 'llm'],
     links: [
       {

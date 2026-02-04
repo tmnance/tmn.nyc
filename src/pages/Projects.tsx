@@ -29,6 +29,7 @@ const Projects = () => {
               <h3 className="text-xl font-semibold text-white mb-2 font-mono group-hover:text-neon-pink transition-colors duration-300">
                 {project.name}
               </h3>
+              <p className="text-gray-300 text-sm mb-3">{project.description}</p>
               <div className="flex flex-wrap gap-2">
                 {project.technologies.map((tech, techIndex) => (
                   <span
