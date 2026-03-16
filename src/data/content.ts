@@ -16,6 +16,18 @@ export interface ContactLink {
 
 export const projects: Project[] = [
   {
+    name: 'MarketScope',
+    description:
+      'A full-stack stock market analysis tool for deriving insights, comparing investment strategies, and benchmarking against major indices.',
+    technologies: ['react', 'typescript', 'tailwind', 'node', 'python', 'django', 'sqlite'],
+    links: [
+      {
+        name: 'GitHub',
+        url: 'https://github.com/tmnance/investing-explorer',
+      },
+    ],
+  },
+  {
     name: 'Cognia Insightarium',
     description:
       'A bookmark / saved post management system for collecting, organizing, and tagging content from X, Reddit, LinkedIn, and other sources. Features multi-platform sync and LLM-powered tagging.',
